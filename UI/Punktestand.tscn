@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bee718mfcj8bw"]
+
+[ext_resource type="Script" path="res://UI/Punktestand.gd" id="1_lt2g6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0sipg"]
+bg_color = Color(0.0509804, 0.341176, 0.521569, 1)
+
+[node name="Panel" type="Panel"]
+custom_minimum_size = Vector2(200, 100)
+offset_right = 200.0
+offset_bottom = 100.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0sipg")
+script = ExtResource("1_lt2g6")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+text = "Killed: 89
+"
+
+[node name="Punktestand" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

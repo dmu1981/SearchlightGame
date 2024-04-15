@@ -1,0 +1,130 @@
+[gd_scene load_steps=10 format=3 uid="uid://bebq7x0uw3ijw"]
+
+[ext_resource type="PackedScene" uid="uid://cij5v3lo0tmpv" path="res://SweepingSpotlight.tscn" id="1_nwujq"]
+[ext_resource type="PackedScene" uid="uid://dl46kafk68mak" path="res://MouseController.tscn" id="2_jxkdl"]
+[ext_resource type="PackedScene" uid="uid://dcpm7lcg8cyh" path="res://Creeper.tscn" id="3_mlvfs"]
+[ext_resource type="PackedScene" uid="uid://p8l3gp8lymk3" path="res://Spawner.tscn" id="4_x0dgb"]
+[ext_resource type="PackedScene" uid="uid://cax3kbcgpt8l2" path="res://HUD.tscn" id="5_qy4jo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_10yqo"]
+size = Vector3(5, 0.1, 5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4xhnh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cut4v"]
+size = Vector3(0.3, 1, 0.3)
+
+[sub_resource type="Curve3D" id="Curve3D_ej1fy"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.0454216, -4.88257, 0.571427),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[node name="GameScene" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.853551, -0.286046, 0.435464, 0, 0.835807, 0.549023, -0.52101, -0.468619, 0.713404, 2.53654, 3.25535, 4.13826)
+projection = 1
+size = 3.5
+
+[node name="FloorBody" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorBody"]
+shape = SubResource("BoxShape3D_10yqo")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="FloorBody/CollisionShape3D"]
+transform = Transform3D(5, 0, 0, 0, 0.1, 0, 0, 0, 5, 0, 0, 0)
+mesh = SubResource("BoxMesh_4xhnh")
+skeleton = NodePath("../../..")
+
+[node name="ObstacleBody" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.145765, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObstacleBody"]
+shape = SubResource("BoxShape3D_cut4v")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="ObstacleBody/CollisionShape3D"]
+transform = Transform3D(0.3, 0, 0, 0, 1, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_4xhnh")
+skeleton = NodePath("../../..")
+
+[node name="ObstacleBody2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.23116, 0.145765, 1.2366)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObstacleBody2"]
+shape = SubResource("BoxShape3D_cut4v")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="ObstacleBody2/CollisionShape3D"]
+transform = Transform3D(0.3, 0, 0, 0, 1, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_4xhnh")
+skeleton = NodePath("../../..")
+
+[node name="ObstacleBody3" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05588, 0.145765, 0.722338)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObstacleBody3"]
+shape = SubResource("BoxShape3D_cut4v")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="ObstacleBody3/CollisionShape3D"]
+transform = Transform3D(0.3, 0, 0, 0, 1, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_4xhnh")
+skeleton = NodePath("../../..")
+
+[node name="ObstacleBody4" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.817284, 0.145765, -1.24533)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObstacleBody4"]
+shape = SubResource("BoxShape3D_cut4v")
+
+[node name="FloorMesh" type="MeshInstance3D" parent="ObstacleBody4/CollisionShape3D"]
+transform = Transform3D(0.3, 0, 0, 0, 1, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_4xhnh")
+skeleton = NodePath("../../..")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999844, 0.0176793, 0, -0.0176793, 0.999844, 0, 3, 0)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="NorthLight" parent="." instance=ExtResource("1_nwujq")]
+transform = Transform3D(0.690453, 0.70444, -0.164434, 0, 0.227314, 0.973822, 0.723377, -0.672378, 0.15695, 0, 3, -2.5)
+
+[node name="EastLight" parent="." instance=ExtResource("1_nwujq")]
+transform = Transform3D(0.690453, 0.70444, -0.164434, 0, 0.227314, 0.973822, 0.723377, -0.672378, 0.15695, 2.5, 3, 0)
+
+[node name="SouthLight" parent="." instance=ExtResource("1_nwujq")]
+transform = Transform3D(0.690453, 0.70444, -0.164434, 0, 0.227314, 0.973822, 0.723377, -0.672378, 0.15695, 0, 3, 2.5)
+
+[node name="WestLight" parent="." instance=ExtResource("1_nwujq")]
+transform = Transform3D(0.690453, 0.70444, -0.164434, 0, 0.227314, 0.973822, 0.723377, -0.672378, 0.15695, -2.5, 3, 0)
+
+[node name="MouseController" parent="." node_paths=PackedStringArray("spotlights", "camera") instance=ExtResource("2_jxkdl")]
+spotlights = [NodePath("../NorthLight"), NodePath("../EastLight"), NodePath("../SouthLight"), NodePath("../WestLight")]
+camera = NodePath("../Camera3D")
+
+[node name="Creeper" parent="." node_paths=PackedStringArray("controller") instance=ExtResource("3_mlvfs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0988, 0.189548, 1.11474)
+controller = NodePath("../MouseController")
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(0.996058, 0, -0.0887031, -0.0879798, -0.127445, -0.987936, -0.0113048, 0.991846, -0.126943, -2.44248, 0.132665, 2.42603)
+curve = SubResource("Curve3D_ej1fy")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-0.996856, 0.0786977, -0.00923933, 0, 0.116602, 0.993179, 0.0792382, 0.990056, -0.116235, 0, 0, 0)
+
+[node name="Path3D2" type="Path3D" parent="."]
+transform = Transform3D(0.996058, 0, -0.0887031, -0.0879798, -0.127445, -0.987936, -0.0113048, 0.991846, -0.126943, 2.18477, 0.0742612, 2.42603)
+curve = SubResource("Curve3D_ej1fy")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D2"]
+transform = Transform3D(-0.996856, 0.0786977, -0.00923933, 0, 0.116602, 0.993179, 0.0792382, 0.990056, -0.116235, 0, 0, 0)
+
+[node name="Spawner" parent="." node_paths=PackedStringArray("sourcePath", "targetPath", "controller") instance=ExtResource("4_x0dgb")]
+sourcePath = NodePath("../Path3D/PathFollow3D")
+targetPath = NodePath("../Path3D2/PathFollow3D")
+controller = NodePath("../MouseController")
+creeperScene = ExtResource("3_mlvfs")
+
+[node name="Hud" parent="." instance=ExtResource("5_qy4jo")]
